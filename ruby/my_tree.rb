@@ -1,3 +1,4 @@
+# 사용자에게 해시 내부에 포함 된 구조를 받아들이는 Tree 작성
 require 'test/unit'
 require 'set'
 

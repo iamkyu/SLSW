@@ -1,3 +1,4 @@
+# 랜덤한 수를 생성하고, 사용자가 추측하는 프로그램
 class GuessNumber
     attr_accessor :max, :num, :line
 
