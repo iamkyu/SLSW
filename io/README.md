@@ -70,3 +70,58 @@ Vehicle drive
 ```
 
 메서드 역시 다른 모든 객체와 마찬가지로 하나의 객체.
+
+## 연산자
+
+```io
+OperatorTable
+```
+
+위와 같은 명령어로 정의되어 있는 연산자 목록을 조회할 수 있음.
+
+```io
+OperatorTable addOperator("xor", 11)
+true xor := method(bool, if(bool, false, true))
+false xor := method(bool, if(bool, true, false))
+```
+
+직접 연산자를 정의해서 추가하는 것이 가능.
+
+## 메시지
+
+Io 에서는 문법과 인수 사이에 존재하는 쉼표를 제외하면 거의 모든 것을 메시지로 취급.
+
+- 메시지는 세 개의 컴포넌트를 가짐: 발신자(sender), 목표(target), 인수(arguments)
+
+```io
+myif := method(
+    (call sender doMessage(call message argAt(0))) ifTrue( 
+    call sender doMessage(call message argAt(1))) ifFalse( 
+    call sender doMessage(call message argAt(2)))
+)
+
+myif(1 == 2, write("true\n"), write("false\n"))
+```
+
+Io 에서 `call` 메서드를 통해 모든 메시지에 대한 메타 정보에 접근.
+
+## 리플렉션
+
+### 객체 리플렉션
+
+```io
+Animal := Object clone
+Animal speack := method("ambiguous animal noise" println)
+
+Duck := Animal clone
+Duck speack := method("quack" println)
+Duck walk := method("waddle" println)
+
+disco := Duck clone
+disco ancestors
+```
+
+Io 에서 객체 리플렉션은 객체와 그러한 객체에 담긴 슬롯을 다루는 것을 의미함. 위 예에서 `disco` 의 프로토타입은 `Duck` 이지만 `Animal` 에도 접근 가능.
+
+- 하나의 객체는 하나 이상의 프로토타입을 가질 수 있음.
+
